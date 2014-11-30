@@ -1,16 +1,16 @@
 goog.provide('tm.BrainRegistry');
 
-goog.require('tm.brain.RandomBrain');
-goog.require('tm.brain.SelfishBrain');
+goog.require('tm.brains.RandomBrain');
+goog.require('tm.brains.SelfishBrain');
 
 tm.BrainRegistry = {
     randomBrain: {
         name: 'Random brain',
-        brain: tm.brain.RandomBrain
+        brain: tm.brains.RandomBrain
     },
 
     selfishBrain: {
         name: 'Selfish Brain',
-        brain: tm.brain.SelfishBrain
+        brain: tm.brains.SelfishBrain
     }
 };

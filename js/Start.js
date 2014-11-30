@@ -1,6 +1,7 @@
 goog.provide('tm.start');
 
 goog.require('goog.dom');
+goog.require('tm.BrainSelector');
 goog.require('tm.Renderer');
 goog.require('tm.Simulator');
 goog.require('tm.Termite');
@@ -8,6 +9,10 @@ goog.require('tm.World');
 goog.require('tm.WorldGenerator');
 
 tm.start = function() {
+    var brainSelectorDiv = goog.dom.createDom('div');
+    goog.dom.appendChild(document.body, brainSelectorDiv);
+    new tm.BrainSelector('teamRedBrain', brainSelectorDiv);
+
     var canvas = goog.dom.createDom('canvas', {'width': '500', 'height': '500'});
     goog.dom.appendChild(document.body, canvas);
 
