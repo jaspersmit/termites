@@ -1,6 +1,9 @@
 goog.provide('tm.Termite');
 
 goog.require('tm.Action');
+goog.require('tm.Tiles');
+goog.require('tm.Perception');
+goog.require('tm.brains.RandomBrain');
 
 tm.Termite = function(world, team, x, y) {
     this.world = world;
@@ -8,6 +11,9 @@ tm.Termite = function(world, team, x, y) {
     this.x = x;
     this.y = y;
     this.energy = 5000;
+    this.brain = tm.brains.RandomBrain;
+    this.perception = new tm.Perception(this);
+    this.memory = [];
 };
 
 tm.Termite.prototype = {
@@ -17,15 +23,10 @@ tm.Termite.prototype = {
         this.energy -= 10;
     },
 
-
     actions: [tm.Action.STAY, tm.Action.LEFT, tm.Action.UP, tm.Action.RIGHT, tm.Action.DOWN, tm.Action.EAT, tm.Action.REPRODUCE],
 
     think: function() {
-        var tile = this.world.getTile(this.x, this.y);
-        if(tile == tm.Tiles.PLANT || tile == tm.Tiles.WEED) { return tm.Action.EAT; }
-        if(this.energy > 7000) { return tm.Action.REPRODUCE; }
-        var actionIndex = Math.floor(Math.random() * 6);
-        return this.actions[actionIndex];
+        return this.brain(this.perception, this.memory);
     },
 
     performAction: function(action) {

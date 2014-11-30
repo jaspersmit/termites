@@ -8,7 +8,6 @@ goog.require('tm.World');
 goog.require('tm.WorldGenerator');
 
 tm.start = function() {
-    alert('We are up and running');
     var canvas = goog.dom.createDom('canvas', {'width': '500', 'height': '500'});
     goog.dom.appendChild(document.body, canvas);
 
