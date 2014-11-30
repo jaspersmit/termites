@@ -1,0 +1,19 @@
+goog.provide('tm.WorldGenerator');
+
+goog.require('tm.World')
+goog.require('tm.Tiles')
+
+tm.WorldGenerator = {
+    generate: function(world) {
+        for(var x = 0; x < world.size; x++) {
+            for(var y = 0; y < world.size; y++) {
+                if(Math.random() < 0.01) { 
+                    world.setTile(x, y, tm.Tiles.PLANT);
+                } else if(Math.random() < 0.005) {
+                    world.setTile(x, y, tm.Tiles.WEED);
+                }
+            }
+        }
+
+    }
+};
