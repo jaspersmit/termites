@@ -81,6 +81,15 @@ tm.Simulator.prototype = {
             }
         }
         this.world.termites = aliveTermites;
-        
+    },
+
+    getTeamPopulation: function(team) {
+        var population = 0;
+        for(var i = 0; i < this.world.termites.length; i++) {
+            if(this.world.termites[i].team == team) {
+                population ++;
+            }
+        }
+        return population;
     }
 };

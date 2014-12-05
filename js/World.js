@@ -6,8 +6,8 @@ var worldSize = 50;
 
 tm.World = {
     size: worldSize,
-    tiles: Uint8Array(worldSize * worldSize),
-    tileData: Uint8Array(worldSize * worldSize),
+    tiles: new Uint8Array(worldSize * worldSize),
+    tileData: new Uint8Array(worldSize * worldSize),
     
     termites: [],
 

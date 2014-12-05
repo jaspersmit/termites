@@ -2,12 +2,14 @@
 // Please do not edit.
 goog.addDependency('../../../js/Action.js', ['tm.Action'], []);
 goog.addDependency('../../../js/BrainRegistry.js', ['tm.BrainRegistry'], ['tm.brains.RandomBrain', 'tm.brains.SelfishBrain']);
-goog.addDependency('../../../js/BrainSelector.js', ['tm.BrainSelector'], ['goog.dom', 'tm.BrainRegistry']);
+goog.addDependency('../../../js/BrainSelector.js', ['tm.BrainSelector'], ['goog.dom', 'goog.events', 'tm.BrainRegistry']);
 goog.addDependency('../../../js/Perception.js', ['tm.Perception'], ['tm.Tiles']);
 goog.addDependency('../../../js/Plant.js', ['tm.Plant'], []);
 goog.addDependency('../../../js/Renderer.js', ['tm.Renderer'], ['tm.Tiles', 'tm.World']);
 goog.addDependency('../../../js/Simulator.js', ['tm.Simulator'], ['tm.Plant', 'tm.Tiles', 'tm.Weed']);
-goog.addDependency('../../../js/Start.js', ['tm.start'], ['goog.dom', 'tm.BrainSelector', 'tm.Renderer', 'tm.Simulator', 'tm.Termite', 'tm.World', 'tm.WorldGenerator']);
+goog.addDependency('../../../js/Start.js', ['tm.start'], ['goog.dom', 'tm.BrainSelector', 'tm.Renderer', 'tm.Simulator', 'tm.TeamUI', 'tm.Teams', 'tm.Termite', 'tm.World', 'tm.WorldGenerator']);
+goog.addDependency('../../../js/TeamUI.js', ['tm.TeamUI'], ['goog.dom', 'tm.BrainSelector']);
+goog.addDependency('../../../js/Teams.js', ['tm.Teams'], ['tm.brains.RandomBrain']);
 goog.addDependency('../../../js/Termite.js', ['tm.Termite'], ['tm.Action', 'tm.Perception', 'tm.Tiles', 'tm.brains.RandomBrain']);
 goog.addDependency('../../../js/Tiles.js', ['tm.Tiles'], []);
 goog.addDependency('../../../js/Weed.js', ['tm.Weed'], []);

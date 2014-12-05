@@ -4,6 +4,7 @@ goog.require('tm.Action');
 goog.require('tm.Tiles');
 goog.require('tm.Perception');
 goog.require('tm.brains.RandomBrain');
+goog.require('tm.Teams');
 
 tm.Termite = function(world, team, x, y) {
     this.world = world;
@@ -11,7 +12,7 @@ tm.Termite = function(world, team, x, y) {
     this.x = x;
     this.y = y;
     this.energy = 5000;
-    this.brain = tm.brains.RandomBrain;
+    this.brain = tm.Teams[team].brain;
     this.perception = new tm.Perception(this);
     this.memory = [];
 };

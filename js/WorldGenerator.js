@@ -11,6 +11,8 @@ tm.WorldGenerator = {
                     world.setTile(x, y, tm.Tiles.PLANT);
                 } else if(Math.random() < 0.005) {
                     world.setTile(x, y, tm.Tiles.WEED);
+                } else {
+                    world.setTile(x, y, tm.Tiles.NONE);
                 }
             }
         }
