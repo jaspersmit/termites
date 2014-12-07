@@ -13,7 +13,9 @@ tm.Termite = function(world, team, x, y) {
     this.energy = 5000;
     this.brain = tm.Teams[team].brain;
     this.perception = new tm.Perception(this);
-    this.memory = [];
+    this.memory = {};
+    this.dna = {};
+    this.age = 0;
 };
 
 tm.Termite.prototype = {
@@ -21,12 +23,13 @@ tm.Termite.prototype = {
         var action = this.think();
         this.performAction(action);
         this.energy -= 10;
+        this.age++;
     },
 
     actions: [tm.Action.STAY, tm.Action.LEFT, tm.Action.UP, tm.Action.RIGHT, tm.Action.DOWN, tm.Action.EAT, tm.Action.REPRODUCE],
 
     think: function() {
-        return this.brain(this.perception, this.memory);
+        return this.brain(this.perception, this.memory, this.dna);
     },
 
     performAction: function(action) {
@@ -73,6 +76,9 @@ tm.Termite.prototype = {
             this.energy -= 4000;
             var child = new tm.Termite(this.world, this.team, this.x, this.y);
             child.energy = 1000;
+            if(this.brain.mutate) {
+                child.dna = this.brain.mutate(this.dna);
+            }
             this.world.addTermite(child);
         }
         this.world.setTermiteTile(this.x, this.y, this);

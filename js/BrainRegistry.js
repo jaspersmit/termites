@@ -6,8 +6,14 @@ goog.require('tm.brains.Greedy');
 goog.require('tm.brains.Farming');
 goog.require('tm.brains.Bastard');
 goog.require('tm.brains.Neural');
+goog.require('tm.brains.Smart');
 
 tm.BrainRegistry = {
+    smart: {
+        name: 'Smart',
+        brain: tm.brains.Smart
+    },
+
     random: {
         name: 'Random',
         brain: tm.brains.Random
@@ -37,4 +43,5 @@ tm.BrainRegistry = {
         name: 'Neural',
         brain: tm.brains.Neural
     }
+
 };

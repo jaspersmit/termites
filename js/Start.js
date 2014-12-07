@@ -39,6 +39,9 @@ tm.start = function() {
         var teamUI = createTeamDiv(tm.Teams[i]);
         teamUIList.push(teamUI);
     }
+    var age = goog.dom.createDom('div');
+    age.innerHTML = "Average age";
+    goog.dom.appendChild(document.body, age);
 
     tm.reset();
 
@@ -58,6 +61,12 @@ tm.start = function() {
             var teamPopulation = tm.World.population[i];
             teamUIList[i].setInfo(teamPopulation + "; " + Math.floor(simulator.getTeamEnergy(i) / teamPopulation) + " energy/termite");
         }
+        var totalAge = 0;
+        for(var i = 0; i < tm.World.termites.length; i++) {
+            var termite = tm.World.termites[i];
+            totalAge += termite.age;
+        }
+        age.innerHTML = Math.round(totalAge / tm.World.termites.length);
     }, 1);
     var lastTime = Date.now();
     var lastStep = 0;
