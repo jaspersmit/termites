@@ -18,7 +18,7 @@ tm.Perception = function(termite) {
         var absoluteX = x + termite.x;
         var absoluteY = y + termite.y;
         if(absoluteX < 0 || absoluteX >= termite.world.size || absoluteY < 0 || absoluteY >= termite.world.size) {
-            return tm.Tiles.NONE;
+            return 0;
         }
         return termite.world.getData(absoluteX, absoluteY);
     };
