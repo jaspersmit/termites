@@ -32,25 +32,29 @@ tm.Termite.prototype = {
     performAction: function(action) {
         if(action == tm.Action.LEFT) {
             var newX = this.x - 1;
-            if(newX >= 0) {
+            var tile = this.world.getTile(newX, this.y);
+            if(newX >= 0 && tile != tm.Tiles.FRIEND && tile != tm.Tiles.ENEMY) {
                 this.x = newX;
             }
         }
         if(action == tm.Action.RIGHT) {
             var newX = this.x + 1;
-            if(newX < this.world.size) {
+            var tile = this.world.getTile(newX, this.y);
+            if(newX < this.world.size && tile != tm.Tiles.FRIEND && tile != tm.Tiles.ENEMY) {
                 this.x = newX;
             }
         }
         if(action == tm.Action.UP) {
             var newY = this.y - 1;
-            if(newY >= 0) {
+            var tile = this.world.getTile(this.x, newY);
+            if(newY >= 0 && tile != tm.Tiles.FRIEND && tile != tm.Tiles.ENEMY) {
                 this.y = newY;
             }
         }
         if(action == tm.Action.DOWN) {
             var newY = this.y + 1;
-            if(newY < this.world.size) {
+            var tile = this.world.getTile(this.x, newY);
+            if(newY < this.world.size && tile != tm.Tiles.FRIEND && tile != tm.Tiles.ENEMY) {
                 this.y = newY;
             }
         }
