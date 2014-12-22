@@ -56,8 +56,7 @@ tm.Renderer.prototype = {
     },
 
     renderTermite: function(context, termite) {
-        var brightness = Math.floor(128 + Math.max(128, termite.energy / 4000 * 128));
-        var color = termite.team == 0 ? 'rgba(' + brightness + ', 0, 0, 1)' : 'rgba(0, 0, ' + brightness + ', 1)';
+        var color = termite.team == 0 ? 'rgba(256, 0, 0, 1)' : 'rgba(0, 0, 256, 1)';
         context.fillStyle = color;
         context.fillRect(0, 0, this.tileSize, this.tileSize);
     },
