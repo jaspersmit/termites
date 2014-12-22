@@ -1,6 +1,6 @@
-goog.provide('tm.brains.SelfishBrain');
+goog.provide('tm.brains.Selfish');
 
-tm.brains.SelfishBrain = function(perception, memory) {
+tm.brains.Selfish = function(perception, memory) {
     var tile = perception.viewTile(0, 0);
     if(tile == tm.Tiles.PLANT) { return tm.Action.EAT; }
     if(this.energy > 7000) { return tm.Action.REPRODUCE; }

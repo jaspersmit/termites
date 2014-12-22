@@ -3,7 +3,6 @@ goog.provide('tm.Termite');
 goog.require('tm.Action');
 goog.require('tm.Tiles');
 goog.require('tm.Perception');
-goog.require('tm.brains.RandomBrain');
 goog.require('tm.Teams');
 
 tm.Termite = function(world, team, x, y) {

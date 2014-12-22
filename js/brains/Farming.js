@@ -1,6 +1,6 @@
-goog.provide('tm.brains.FarmingBrain');
+goog.provide('tm.brains.Farming');
 
-tm.brains.FarmingBrain = function(perception, memory) {
+tm.brains.Farming = function(perception, memory) {
     var x = perception.x();
     var y = perception.y();
     if(!memory.birthX) {

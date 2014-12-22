@@ -1,30 +1,30 @@
 goog.provide('tm.BrainRegistry');
 
-goog.require('tm.brains.RandomBrain');
-goog.require('tm.brains.SelfishBrain');
-goog.require('tm.brains.GreedyBrain');
-goog.require('tm.brains.FarmingBrain');
+goog.require('tm.brains.Random');
+goog.require('tm.brains.Selfish');
+goog.require('tm.brains.Greedy');
+goog.require('tm.brains.Farming');
 goog.require('tm.brains.Bastard');
 
 tm.BrainRegistry = {
-    randomBrain: {
-        name: 'Random brain',
-        brain: tm.brains.RandomBrain
+    random: {
+        name: 'Random',
+        brain: tm.brains.Random
     },
 
-    selfishBrain: {
-        name: 'Selfish Brain',
-        brain: tm.brains.SelfishBrain
+    selfish: {
+        name: 'Selfish',
+        brain: tm.brains.Selfish
     },
 
-    greedyBrain: {
-        name: 'Greedy Brain',
-        brain: tm.brains.GreedyBrain
+    greedy: {
+        name: 'Greedy',
+        brain: tm.brains.Greedy
     },
 
-    farmingBrain: {
-        name: 'Farming Brain',
-        brain: tm.brains.FarmingBrain
+    farming: {
+        name: 'Farming',
+        brain: tm.brains.Farming
     },
 
     bastard: {

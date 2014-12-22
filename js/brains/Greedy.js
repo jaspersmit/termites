@@ -1,10 +1,10 @@
-goog.provide('tm.brains.GreedyBrain');
+goog.provide('tm.brains.Greedy');
 
 goog.require('tm.Tiles');
 goog.require('tm.Action');
 
 
-tm.brains.GreedyBrain = function(perception, memory) {
+tm.brains.Greedy = function(perception, memory) {
     if(!memory.children) {memory.children = 0; }
     if(perception.energy() > 7000) { 
         memory.children ++;
