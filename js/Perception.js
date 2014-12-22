@@ -4,7 +4,7 @@ goog.require('tm.Tiles');
 
 tm.Perception = function(termite) {
     this.viewTile = function(x, y) {
-        if(x < -3 || x > 3 || y < -3 || y > 3) { return tm.Tiles.NONE; }
+        if (x*x + y*y > 9) { return tm.Tiles.NONE; }
         var absoluteX = x + termite.x;
         var absoluteY = y + termite.y;
         if(absoluteX < 0 || absoluteX >= termite.world.size || absoluteY < 0 || absoluteY >= termite.world.size) {
@@ -14,7 +14,7 @@ tm.Perception = function(termite) {
     };
 
     this.viewData = function(x, y) {
-        if(x < -3 || x > 3 || y < -3 || y > 3) { return tm.Tiles.NONE; }
+        if (x*x + y*y > 9) { return tm.Tiles.NONE; }
         var absoluteX = x + termite.x;
         var absoluteY = y + termite.y;
         if(absoluteX < 0 || absoluteX >= termite.world.size || absoluteY < 0 || absoluteY >= termite.world.size) {
