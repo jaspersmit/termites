@@ -73,7 +73,7 @@ tm.Termite.prototype = {
             this.energy -= 4000;
             var child = new tm.Termite(this.world, this.team, this.x, this.y);
             child.energy = 1000;
-            this.world.termites.push(child);
+            this.world.addTermite(child);
         }
         this.world.setTermiteTile(this.x, this.y, this);
         this.energy = Math.min(this.energy, 10000);

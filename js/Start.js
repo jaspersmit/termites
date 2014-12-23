@@ -13,11 +13,12 @@ goog.require('tm.Teams');
 "use strict";
 
 tm.reset = function() { 
+    tm.World.reset();
     tm.WorldGenerator.generate(tm.World);
-
-    tm.World.termites = [
-        new tm.Termite(tm.World, 0, 35, 25),
-        new tm.Termite(tm.World, 1, 15, 25) ];
+    tm.World.addTermite(
+        new tm.Termite(tm.World, 0, 35, 25));
+    tm.World.addTermite(
+        new tm.Termite(tm.World, 1, 15, 25));
 };
 tm.start = function() {
 
@@ -54,8 +55,8 @@ tm.start = function() {
         }
         renderer.render();
         for(var i = 0; i < teamUIList.length; i++) {
-            var teamCount = simulator.getTeamPopulation(i)
-            teamUIList[i].setInfo(teamCount + "; " + Math.floor(simulator.getTeamEnergy(i) / teamCount) + " energy/termite");
+            var teamPopulation = tm.World.population[i];
+            teamUIList[i].setInfo(teamPopulation + "; " + Math.floor(simulator.getTeamEnergy(i) / teamPopulation) + " energy/termite");
         }
     }, 1);
     var lastTime = Date.now();

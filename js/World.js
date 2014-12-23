@@ -9,8 +9,14 @@ tm.World = {
     tiles: new Uint8Array(worldSize * worldSize),
     tileData: new Uint8Array(worldSize * worldSize),
     termiteTiles: new Array(worldSize * worldSize),
+    population: new Uint16Array(tm.Teams.length),
     
     termites: [],
+
+    addTermite: function(termite) {
+        this.termites.push(termite);
+        this.population[termite.team]++;
+    },
 
     getTile: function(x, y) {
         return this.tiles[this.indexOfXY(x, y)];
@@ -38,6 +44,15 @@ tm.World = {
 
     indexOfXY: function(x, y) {
         return x + this.size * y;
+    }, 
+    
+    reset: function() {
+        this.size = worldSize;
+        this.tiles = new Uint8Array(worldSize * worldSize);
+        this.tileData = new Uint8Array(worldSize * worldSize);
+        this.termiteTiles = new Array(worldSize * worldSize);
+        this.population = new Uint16Array(tm.Teams.length);
+        this.termites = [];
     }
 };
 

@@ -76,46 +76,37 @@ tm.Simulator.prototype = {
     },
 
     simulateTermites: function() {
-        var redAlive = 0;
-        var blueAlive = 0;
         for(var i = 0; i < this.world.termites.length; i++) {
             this.world.termites[i].simulate();
-            if (this.world.termites[i].team == 0) {
-                redAlive++;
-            } else {
-                blueAlive++;
-            }
         }
+        this.removeStarvedTermites();
+    },
+
+    removeStarvedTermites: function() {
         var aliveTermites = [];
+        var starvedTermites = [];
         for(var i = 0; i < this.world.termites.length; i++) {
             var termite = this.world.termites[i];
             if(termite.energy > 0) {
                 aliveTermites.push(termite);
             } else {
-                this.world.setTermiteTile(termite.x, termite.y, null);
+                starvedTermites.push(termite);
             }
-        }
-        if (redAlive == 0) {
-            var termite = new tm.Termite(this.world, 0, Math.floor(Math.random()*50), Math.floor(Math.random()*50));
-            termite.energy = 1000;
-            aliveTermites.push(termite);
-        }
-        if (blueAlive == 0) {
-            var termite = new tm.Termite(this.world, 1, Math.floor(Math.random()*50), Math.floor(Math.random()*50));
-            termite.energy = 1000;
-            aliveTermites.push(termite);
         }
         this.world.termites = aliveTermites;
+        for(var i = 0; i < starvedTermites.length; i++) {
+            this.handleStarvation(starvedTermites[i]);
+        }
     },
 
-    getTeamPopulation: function(team) {
-        var population = 0;
-        for(var i = 0; i < this.world.termites.length; i++) {
-            if(this.world.termites[i].team == team) {
-                population ++;
-            }
+    handleStarvation: function(deadTermite) {
+        this.world.setTermiteTile(deadTermite.x, deadTermite.y, null);
+        this.world.population[deadTermite.team]--;
+        if(this.world.population[deadTermite.team] == 0) {
+            var reincarnation = new tm.Termite(this.world, deadTermite.team, Math.floor(Math.random()*50), Math.floor(Math.random()*50));
+            reincarnation.energy = 1000;
+            this.world.addTermite(reincarnation);
         }
-        return population;
     },
 
     getTeamEnergy: function(team) {
