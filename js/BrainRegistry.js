@@ -5,6 +5,7 @@ goog.require('tm.brains.Selfish');
 goog.require('tm.brains.Greedy');
 goog.require('tm.brains.Farming');
 goog.require('tm.brains.Bastard');
+goog.require('tm.brains.Neural');
 
 tm.BrainRegistry = {
     random: {
@@ -30,5 +31,10 @@ tm.BrainRegistry = {
     bastard: {
         name: 'Bastard',
         brain: tm.brains.Bastard
+    },
+
+    neural: {
+        name: 'Neural',
+        brain: tm.brains.Neural
     }
 };
