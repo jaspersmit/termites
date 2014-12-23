@@ -39,6 +39,8 @@ tm.Perception = function(termite) {
     this.y = function() { return termite.y; };
 
     this.energy = function() { return termite.energy; };
+
+    this.team = function() { return termite.team; };
 };
 
 
