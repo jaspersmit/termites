@@ -24,10 +24,10 @@ tm.Simulator.prototype = {
             for(var y = 0; y < this.world.size; y++) {
                 var tile = this.world.getTile(x, y); 
                 var data = this.world.getData(x, y); 
-                if(tile == tm.Tiles.PLANT) {
+                if(tile & tm.Tiles.PLANT) {
                     this.simulatePlant(x, y, data);
                 }
-                if(tile == tm.Tiles.WEED) {
+                if(tile & tm.Tiles.WEED) {
                     this.simulateWeed(x, y, data);
                 }
             }
@@ -44,8 +44,8 @@ tm.Simulator.prototype = {
                 var childY = y + Math.floor(Math.random() * 6) - 3;
                 if(childX >= 0 && childX < this.world.size
                     && childY >= 0 && childY < this.world.size
-                    && this.world.getTile(childX, childY) == tm.Tiles.NONE) {
-                    this.world.setTile(childX, childY, tm.Tiles.PLANT);
+                    && this.world.getTile(childX, childY) & tm.Tiles.NONE) {
+                    this.world.setTile(childX, childY, (this.world.getTile(childX, childY) | tm.Tiles.PLANT) & ~tm.Tiles.NONE);
                     this.world.setData(childX, childY, 0);
                 }
             }
@@ -64,8 +64,8 @@ tm.Simulator.prototype = {
                 var childY = y + Math.floor(Math.random() * 6) - 3;
                 if(childX >= 0 && childX < this.world.size
                     && childY >= 0 && childY < this.world.size
-                    && this.world.getTile(childX, childY) == tm.Tiles.NONE) {
-                    this.world.setTile(childX, childY, tm.Tiles.WEED);
+                    && this.world.getTile(childX, childY) & tm.Tiles.NONE) {
+                    this.world.setTile(childX, childY, (this.world.getTile(childX, childY) | tm.Tiles.WEED) & ~tm.Tiles.NONE);
                     this.world.setData(childX, childY, 0);
                 }
             }

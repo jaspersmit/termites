@@ -11,16 +11,6 @@ tm.Perception = function(termite) {
         if(absoluteX < 0 || absoluteX >= termite.world.size || absoluteY < 0 || absoluteY >= termite.world.size) {
             return tm.Tiles.NONE;
         }
-        for(var i = 0; i < termite.world.termites.length; i++) {
-            var other = termite.world.termites[i];
-            if (other.x == x && other.y == y) {
-                if (other.team == termite.team) {
-                    return tm.Tiles.FRIEND;
-                } else {
-                    return tm.Tiles.ENEMY;
-                }
-            }
-        }
         return termite.world.getTile(absoluteX, absoluteY);
     };
 

@@ -36,10 +36,10 @@ tm.Renderer.prototype = {
     },
 
     renderTile: function(context, tile, data) {
-        if(tile == tm.Tiles.PLANT) {
+        if(tile & tm.Tiles.PLANT) {
             context.fillStyle = this.plantColors[data];
             context.fillRect(0, 0, this.tileSize, this.tileSize);
-        } else if(tile == tm.Tiles.WEED) {
+        } else if(tile & tm.Tiles.WEED) {
             context.fillStyle = this.weedColors[data];
             context.fillRect(0, 0, this.tileSize, this.tileSize);
         }
