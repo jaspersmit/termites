@@ -6,11 +6,17 @@ goog.require('tm.Weed')
 
 tm.Simulator = function(world) {
     this.world = world;
+    this.step = 0;
 };
 tm.Simulator.prototype = {
     simulate: function() {
         this.simulateTiles();
         this.simulateTermites();
+        this.step++;
+    },
+
+    getStep: function() {
+        return this.step;
     },
 
     simulateTiles: function() {
@@ -70,8 +76,15 @@ tm.Simulator.prototype = {
     },
 
     simulateTermites: function() {
+        var redAlive = 0;
+        var blueAlive = 0;
         for(var i = 0; i < this.world.termites.length; i++) {
             this.world.termites[i].simulate();
+            if (this.world.termites[i].team == 0) {
+                redAlive++;
+            } else {
+                blueAlive++;
+            }
         }
         var aliveTermites = [];
         for(var i = 0; i < this.world.termites.length; i++) {
@@ -79,6 +92,16 @@ tm.Simulator.prototype = {
             if(termite.energy > 0) {
                 aliveTermites.push(termite);
             }
+        }
+        if (redAlive == 0) {
+            var termite = new tm.Termite(this.world, 0, 35, 25);
+            termite.energy = 1000;
+            aliveTermites.push(termite);
+        }
+        if (blueAlive == 0) {
+            var termite = new tm.Termite(this.world, 1, 25, 15);
+            termite.energy = 1000;
+            aliveTermites.push(termite);
         }
         this.world.termites = aliveTermites;
     },
@@ -91,5 +114,16 @@ tm.Simulator.prototype = {
             }
         }
         return population;
-    }
+    },
+
+    getTeamEnergy: function(team) {
+        var energy = 0;
+        for(var i = 0; i < this.world.termites.length; i++) {
+            if(this.world.termites[i].team == team) {
+                energy += this.world.termites[i].energy;
+            }
+        }
+        return energy;
+    },
+
 };

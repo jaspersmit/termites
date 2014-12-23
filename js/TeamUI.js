@@ -8,12 +8,12 @@ tm.TeamUI = function(teamInfo, container) {
    goog.dom.appendChild(container, colorIndicator);
    var brainSelector = new tm.BrainSelector(teamInfo, container);
    var teamUI = this;
-   this.population = goog.dom.createDom('span', {}, '0');
-   goog.dom.appendChild(container, this.population);
+   this.info = goog.dom.createDom('span', {}, '0');
+   goog.dom.appendChild(container, this.info);
 };
 tm.TeamUI.prototype = {
-    setPopulation: function(population) {
-        this.population.innerHTML = population;
+    setInfo: function(info) {
+        this.info.innerHTML = info;
     }, 
 
     brainSelected: function() { } 

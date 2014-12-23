@@ -19,6 +19,13 @@ tm.reset = function() {
 };
 tm.start = function() {
 
+    var fps = goog.dom.createDom('div');
+    goog.dom.appendChild(document.body, fps);
+
+    goog.dom.appendChild(document.body, goog.dom.createDom('span', {}, "speed"));
+    var speed = goog.dom.createDom('input', { type:"number", min:1, max:1000, value: 10});
+    goog.dom.appendChild(document.body, speed);
+
     var createTeamDiv = function(teamInfo) {
         var teamDiv = goog.dom.createDom('div');
         goog.dom.appendChild(document.body, teamDiv);
@@ -40,10 +47,22 @@ tm.start = function() {
 
     var simulator = new tm.Simulator(tm.World);
     setInterval(function() {
-        simulator.simulate();
+        for (var i=0; i<speed.value; i++) {
+            simulator.simulate();
+        }
         renderer.render();
         for(var i = 0; i < teamUIList.length; i++) {
-            teamUIList[i].setPopulation(simulator.getTeamPopulation(i));
+            var teamCount = simulator.getTeamPopulation(i)
+            teamUIList[i].setInfo(teamCount + "; " + Math.floor(simulator.getTeamEnergy(i) / teamCount) + " energy/termite");
         }
     }, 1);
+    var lastTime = Date.now();
+    var lastStep = 0;
+    setInterval(function() {
+        var now = Date.now();
+        var step = simulator.getStep();
+        fps.innerHTML = "FPS: " + Math.floor((step - lastStep) / (now - lastTime) * 1000);
+        lastTime = now;
+        lastStep = step;
+    }, 1000);
 };
