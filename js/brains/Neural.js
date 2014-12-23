@@ -116,13 +116,17 @@ tm.brains.Neural = function(perception, memory) {
     var i = 0;
     for (var i = 0; i < tiles.length; i++) {
         var info = perception.viewTile(tiles[i][0], tiles[i][1]);
-        if (info & (tm.Tiles.PLANT | tm.Tiles.WEED)) {
+        if (info == tm.Tiles.PLANT) {
             inputs[i*tileTypeCount+extraInputs+0] = tm.Plant.getNutritionalValue(perception.viewData(tiles[i][0], tiles[i][1]));
         }
-        if (info & tm.Tiles.FRIEND) {
+        if (info == tm.Tiles.WEED) {
+            inputs[i*tileTypeCount+extraInputs+0] = tm.Weed.getNutritionalValue(perception.viewData(tiles[i][0], tiles[i][1]));
+        }
+        var otherTermite = perception.viewTermite(tiles[i][0], tiles[i][1]);
+        if (otherTermite && otherTermite.team == perception.team()) {
             inputs[i*tileTypeCount+extraInputs+1] = 1;
         }
-        if (info & tm.Tiles.ENEMY) {
+        if (otherTermite && otherTermite.team == perception.team()) {
             inputs[i*tileTypeCount+extraInputs+1] = -1;
         }
     }
