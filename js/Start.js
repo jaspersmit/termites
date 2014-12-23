@@ -10,6 +10,8 @@ goog.require('tm.WorldGenerator');
 goog.require('tm.TeamUI');
 goog.require('tm.Teams');
 
+"use strict";
+
 tm.reset = function() { 
     tm.WorldGenerator.generate(tm.World);
 
