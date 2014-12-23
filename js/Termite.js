@@ -78,5 +78,6 @@ tm.Termite.prototype = {
             child.energy = 1000;
             this.world.termites.push(child);
         }
+        this.energy = Math.min(this.energy, 10000);
     }
 };
