@@ -30,40 +30,41 @@ tm.Termite.prototype = {
     },
 
     performAction: function(action) {
-        this.world.setTile(this.x, this.y, this.world.getTile(this.x, this.y) & ~tm.Tiles.TERMITE)
+        this.world.setTermiteTile(this.x, this.y, null);
         if(action == tm.Action.LEFT) {
             var newX = this.x - 1;
-            var tile = this.world.getTile(newX, this.y);
-            if(newX >= 0 && !(tile & tm.Tiles.TERMITE)) {
+            if(newX >= 0 && !this.world.getTermiteTile(newX, this.y)) {
                 this.x = newX;
             }
         }
         if(action == tm.Action.RIGHT) {
             var newX = this.x + 1;
-            var tile = this.world.getTile(newX, this.y);
-            if(newX < this.world.size && !(tile & tm.Tiles.TERMITE)) {
+            if(newX < this.world.size && !this.world.getTermiteTile(newX, this.y)) {
                 this.x = newX;
             }
         }
         if(action == tm.Action.UP) {
             var newY = this.y - 1;
-            var tile = this.world.getTile(this.x, newY);
-            if(newY >= 0 && !(tile & tm.Tiles.TERMITE)) {
+            if(newY >= 0 && !this.world.getTermiteTile(this.x, newY)) {
                 this.y = newY;
             }
         }
         if(action == tm.Action.DOWN) {
             var newY = this.y + 1;
-            var tile = this.world.getTile(this.x, newY);
-            if(newY < this.world.size && !(tile & tm.Tiles.TERMITE)) {
+            if(newY < this.world.size && !this.world.getTermiteTile(this.x, newY)) {
                 this.y = newY;
             }
         }
         if(action == tm.Action.EAT) {
             var tile = this.world.getTile(this.x, this.y);
             var data = this.world.getData(this.x, this.y);
-            if(tile & (tm.Tiles.PLANT | tm.Tiles.WEED)) {
+            if(tile == tm.Tiles.PLANT) {
                 this.energy += tm.Plant.getNutritionalValue(data);
+                this.world.setTile(this.x, this.y, tm.Tiles.NONE);
+                this.world.setData(this.x, this.y, 0);
+            }
+            if(tile == tm.Tiles.WEED) {
+                this.energy += tm.Weed.getNutritionalValue(data);
                 this.world.setTile(this.x, this.y, tm.Tiles.NONE);
                 this.world.setData(this.x, this.y, 0);
             }
@@ -74,7 +75,7 @@ tm.Termite.prototype = {
             child.energy = 1000;
             this.world.termites.push(child);
         }
-        this.world.setTile(this.x, this.y, this.world.getTile(this.x, this.y) | tm.Tiles.TERMITE)
+        this.world.setTermiteTile(this.x, this.y, this);
         this.energy = Math.min(this.energy, 10000);
     }
 };

@@ -24,6 +24,16 @@ tm.Perception = function(termite) {
         return termite.world.getData(absoluteX, absoluteY);
     };
 
+    this.viewTermite = function(x, y) {
+        if (x*x + y*y > 9) { return tm.Tiles.NONE; }
+        var absoluteX = x + termite.x;
+        var absoluteY = y + termite.y;
+        if(absoluteX < 0 || absoluteX >= termite.world.size || absoluteY < 0 || absoluteY >= termite.world.size) {
+            return 0;
+        }
+        return termite.world.getTermiteTile(absoluteX, absoluteY);
+    };
+
     this.x = function() { return termite.x; };
 
     this.y = function() { return termite.y; };
