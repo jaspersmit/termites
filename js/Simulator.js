@@ -94,12 +94,12 @@ tm.Simulator.prototype = {
             }
         }
         if (redAlive == 0) {
-            var termite = new tm.Termite(this.world, 0, 35, 25);
+            var termite = new tm.Termite(this.world, 0, Math.floor(Math.random()*50), Math.floor(Math.random()*50));
             termite.energy = 1000;
             aliveTermites.push(termite);
         }
         if (blueAlive == 0) {
-            var termite = new tm.Termite(this.world, 1, 25, 15);
+            var termite = new tm.Termite(this.world, 1, Math.floor(Math.random()*50), Math.floor(Math.random()*50));
             termite.energy = 1000;
             aliveTermites.push(termite);
         }
