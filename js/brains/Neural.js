@@ -36,10 +36,10 @@ var newBrain = function() {
     var opt = {};
     opt.temporal_window = temporalWindow;
     opt.experience_size = 30000; //size of replay memory
-    opt.start_learn_threshold = 1000; //number of samples required in memory before we begin training
+    opt.start_learn_threshold = 10; //number of samples required in memory before we begin training
     opt.gamma = 0.7; //how much do we plan ahead
     opt.learning_steps_total = 2000000000; //how much training we'll do
-    opt.learning_steps_burnin = 3000; //how many steps do we do random actions to have a good idea of what is possible
+    opt.learning_steps_burnin = 1000; //how many steps do we do random actions to have a good idea of what is possible
     opt.epsilon_min = 0.05; //after learning time: what is the epsilon we still have (random var)
     opt.epsilon_test_time = 0.05; //epsilon to use at training time
     opt.layer_defs = layer_defs;
@@ -63,10 +63,14 @@ tm.brains.Neural = function(perception, memory) {
         memory.step = 0;
         memory.reward = 0;
         //choose a random brain to possibly make better
-        var brain = Math.floor(Math.random()*4)
+        var brain = Math.floor(Math.random()*5)
         memory.brain = newBrain();
-        memory.brain.value_net.fromJSON(brains[brain][2].value_net.toJSON());
-        console.log("Created brain " + memory.id + " using " + brain + " which lived for " + brains[brain][0]);
+        if (brain < 4) {
+            memory.brain.value_net.fromJSON(brains[brain][2].value_net.toJSON());
+            console.log("Created brain " + memory.id + " using " + brain + " which lived for " + brains[brain][0]);
+        } else {
+            console.log("Created new brain");
+        }
     }
     //insert our own brain if we lived longer than the worst one
     if (memory.step > brains[3][0]) {
