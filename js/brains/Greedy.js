@@ -48,6 +48,6 @@ tm.brains.Greedy = function(perception, memory) {
     }
 
 
-    var actionIndex = Math.floor(Math.random() * 6);
+    var actionIndex = Math.round(Math.random() * 5);
     return this.actions[actionIndex];
 };

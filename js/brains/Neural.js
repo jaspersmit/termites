@@ -63,7 +63,7 @@ tm.brains.Neural = function(perception, memory) {
         memory.step = 0;
         memory.reward = 0;
         //choose a random brain to possibly make better
-        var brain = Math.floor(Math.random()*5)
+        var brain = Math.round(Math.random()*4);
         memory.brain = newBrain();
         if (brain < 4) {
             memory.brain.value_net.fromJSON(brains[brain][2].value_net.toJSON());
