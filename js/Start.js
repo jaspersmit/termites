@@ -66,7 +66,7 @@ tm.start = function() {
             var termite = tm.World.termites[i];
             totalAge += termite.age;
         }
-        age.innerHTML = Math.round(totalAge / tm.World.termites.length);
+        age.innerHTML = "average age: " + Math.round(totalAge / tm.World.termites.length);
     }, 1);
     var lastTime = Date.now();
     var lastStep = 0;
