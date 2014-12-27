@@ -114,8 +114,8 @@ tm.Simulator.prototype = {
         this.world.population[deadTermite.team]--;
         if(this.world.population[deadTermite.team] == 0) {
             var reincarnation = new tm.Termite(this.world, deadTermite.team, Math.floor(Math.random()*50), Math.floor(Math.random()*50));
-            reincarnation.energy = 1000;
-            //this.world.addTermite(reincarnation);
+            reincarnation.energy = 5000;
+            this.world.addTermite(reincarnation);
         }
     },
 
