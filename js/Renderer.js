@@ -10,6 +10,10 @@ tm.Renderer = function(canvas, world) {
     this.width = parseInt(canvas.getAttribute('width'));
     this.height = parseInt(canvas.getAttribute('height'));
     this.tileSize = this.width / world.size;
+    this.plantsImage = new Image();
+    this.plantsImage.src = 'images/plants.png';
+    this.weedsImage = new Image();
+    this.weedsImage.src = 'images/weeds.png';
 };
 tm.Renderer.prototype = {
     render: function() {
@@ -37,11 +41,9 @@ tm.Renderer.prototype = {
 
     renderTile: function(context, tile, data) {
         if(tile & tm.Tiles.PLANT) {
-            context.fillStyle = this.plantColors[data];
-            context.fillRect(0, 0, this.tileSize, this.tileSize);
+            context.drawImage(this.plantsImage, 10 * data, 0, 10, 10, 0, 0, 10, 10);
         } else if(tile & tm.Tiles.WEED) {
-            context.fillStyle = this.weedColors[data];
-            context.fillRect(0, 0, this.tileSize, this.tileSize);
+            context.drawImage(this.weedsImage, 10 * data, 0, 10, 10, 0, 0, 10, 10);
         }
     },
 

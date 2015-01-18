@@ -349,7 +349,7 @@ function isPathBetween(node1, node2) {
     if(node1 == node2) { return true; }
     for(var i = 0; i < node1.outputs.length; i++) {
         var other = node1.outputs[i].to;
-        if(isPathBetween(other, node2) { return true; }
+        if(isPathBetween(other, node2)) { return true; }
     }
     return false;
 }
