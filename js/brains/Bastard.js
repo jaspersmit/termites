@@ -13,7 +13,7 @@ var initActions = [tm.Action.LEFT, tm.Action.DOWN, tm.Action.RIGHT, tm.Action.UP
 tm.brains.Bastard = function(perception, memory) {
     if(!('cycle' in memory)) { 
         memory.cycle = -3; 
-        memory.initAction = initActions[Math.floor(Math.random() * 4)];
+        memory.initAction = initActions[Math.round(Math.random() * 3)];
         return memory.initAction;
     }
     if(memory.cycle < 0) {

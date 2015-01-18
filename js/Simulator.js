@@ -24,6 +24,9 @@ tm.Simulator.prototype = {
             for(var y = 0; y < this.world.size; y++) {
                 var tile = this.world.getTile(x, y); 
                 var data = this.world.getData(x, y); 
+                if(tile == tm.Tiles.NONE) {
+                    this.createWeed(x, y);
+                }
                 if(tile == tm.Tiles.PLANT) {
                     this.simulatePlant(x, y, data);
                 }
@@ -33,6 +36,13 @@ tm.Simulator.prototype = {
             }
         }
 
+    },
+
+    createWeed: function(x, y) {
+        var takeStep = Math.random() < 0.00003;
+        if (takeStep) {
+            this.world.setTile(x, y, tm.Tiles.WEED);
+        }
     },
 
     simulatePlant: function(x, y, data) {

@@ -7,12 +7,10 @@ tm.WorldGenerator = {
     generate: function(world) {
         for(var x = 0; x < world.size; x++) {
             for(var y = 0; y < world.size; y++) {
-                if(Math.random() < 0.01) { 
+                if(Math.random() < 0.75) { 
                     world.setTile(x, y, tm.Tiles.PLANT);
-                } else if(Math.random() < 0.005) {
-                    world.setTile(x, y, tm.Tiles.WEED);
                 } else {
-                    world.setTile(x, y, tm.Tiles.NONE);
+                    world.setTile(x, y, tm.Tiles.WEED);
                 }
             }
         }
