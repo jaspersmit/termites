@@ -37,7 +37,7 @@ tm.Simulator.prototype = {
 
     simulatePlant: function(x, y, data) {
         var age = data;
-        var takeStep = Math.random() < 0.25;
+        var takeStep = Math.random() < 0.025;
         if(takeStep) {
             if(age == 4) {
                 var childX = x + Math.floor(Math.random() * 6) - 3;
@@ -57,7 +57,7 @@ tm.Simulator.prototype = {
 
     simulateWeed: function(x, y, data) {
         var age = data;
-        var takeStep = Math.random() < 0.2;
+        var takeStep = Math.random() < 0.02;
         if(takeStep) {
             if(age == 4) {
                 var childX = x + Math.floor(Math.random() * 6) - 3;
@@ -105,7 +105,7 @@ tm.Simulator.prototype = {
         if(this.world.population[deadTermite.team] == 0) {
             var reincarnation = new tm.Termite(this.world, deadTermite.team, Math.floor(Math.random()*50), Math.floor(Math.random()*50));
             reincarnation.energy = 1000;
-            //this.world.addTermite(reincarnation);
+            this.world.addTermite(reincarnation);
         }
     },
 

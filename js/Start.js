@@ -15,6 +15,7 @@ goog.require('tm.Teams');
 tm.reset = function() { 
     tm.World.reset();
     tm.WorldGenerator.generate(tm.World);
+
     tm.World.addTermite(
         new tm.Termite(tm.World, 0, 35, 25));
     tm.World.addTermite(

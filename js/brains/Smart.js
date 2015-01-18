@@ -49,7 +49,7 @@ tm.Network.prototype = {
     },
 
     addLink: function(from, to, strength) {
-        var link = new tm.Link(strength, to);
+        var link = new tm.Link(strength, from, to);
         from.addOutput(link);
         to.addInput(link);
     },
@@ -248,9 +248,10 @@ function() {
     return new tm.ActionNode(this.action);
 };
 
-tm.Link = function(strength, to) {
+tm.Link = function(strength, from, to) {
     this.value = 0;
     this.strength = strength;
+    this.from = from;
     this.to = to;
 };
 tm.Link.prototype = {
@@ -302,7 +303,28 @@ tm.brains.Smart = function(perception, memory, dna) {
 
 tm.brains.Smart.mutate = function(dna) {
     var network = dna.network.clone();
+    mutateWeights(network);
 
+    var numLinks = 0;
+    for(var i = 0; i < network.inputNodes.length; i++) {
+        numLinks += network.inputNodes[i].outputs.length;
+    }
+    for(var i = 0; i < network.inputNodes.length; i++) {
+        numLinks += network.innerNodes[i].outputs.length;
+    }
+    var linkGrowFactor = (numLinks / 20000) - 0.5;
+    
+    createNewLinks(network, linkGrowFactor);
+    removeLinks(network, linkGrowFactor);
+    //createNodes(network, node
+    
+    removeNodes();
+    
+    
+    return { network: network };
+};
+
+function mutateWeights(network) {
     var mutateRate = 0.05;
     var nodes = network.inputNodes.concat(network.innerNodes).concat(network.outputNodes);
     for(var i = 0; i < nodes.length; i++) {
@@ -321,6 +343,30 @@ tm.brains.Smart.mutate = function(dna) {
             }
         }
     }
-    
-    return { network: network };
 };
+
+function isPathBetween(node1, node2) {
+    if(node1 == node2) { return true; }
+    for(var i = 0; i < node1.outputs.length; i++) {
+        var other = node1.outputs[i].to;
+        if(isPathBetween(other, node2) { return true; }
+    }
+    return false;
+}
+
+function createNewLink(network, growFactor) {
+    var node1 = getRandomNode(network); 
+    var node2 = getRandomNode(network);
+
+    if(isPathBetween(node1, node2)) { return false; }
+}
+
+function createNewLinks(network, growFactor) {
+    var linksCreated = 0;
+
+    while(createNewLink(network)) {
+        linksCreated ++;
+    }
+    console.info(linksCreated + " new links created");
+
+}

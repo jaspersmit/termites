@@ -17,5 +17,10 @@ tm.WorldGenerator = {
             }
         }
 
+        var simulator = new tm.Simulator(world);
+        for(var i = 0; i < 1000; i++) {
+            simulator.simulate();
+        }
+
     }
 };
